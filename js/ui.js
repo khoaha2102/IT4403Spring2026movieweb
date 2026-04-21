@@ -1,3 +1,4 @@
+// Render movie cards
 function renderMovies(movies, container = "#homeView .movie-grid") {
   let html = "";
 
@@ -18,6 +19,7 @@ function renderMovies(movies, container = "#homeView .movie-grid") {
   $(container).html(html);
 }
 
+// Render movie details page
 function renderMovieDetails(movie) {
   const poster = movie.poster_path
     ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
