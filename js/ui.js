@@ -12,20 +12,22 @@ function renderMovies(movies, container = "#homeView .movie-grid") {
   let html = "";
 
   movies.forEach(function (movie) {
+    if (!movie || !movie.id) return;
+
     const poster = movie.poster_path
       ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
       : "https://placehold.co/300x450?text=No+Image";
 
     html += `
       <div class="movie-card" data-id="${movie.id}">
-        <img src="${poster}" alt="${movie.title} poster">
-        <h3>${movie.title}</h3>
+        <img src="${poster}" alt="${movie.title || "Movie"} poster">
+        <h3>${movie.title || "Untitled Movie"}</h3>
         <p>⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}</p>
       </div>
     `;
   });
 
-  $(container).html(html);
+  $(container).html(html || "<p>No valid movies found.</p>");
 }
 
 function renderMovieDetails(movie) {
@@ -34,8 +36,8 @@ function renderMovieDetails(movie) {
     : "https://placehold.co/300x450?text=No+Image";
 
   const html = `
-    <img src="${poster}" alt="${movie.title} poster">
-    <h2>${movie.title}</h2>
+    <img src="${poster}" alt="${movie.title || "Movie"} poster">
+    <h2>${movie.title || "Untitled Movie"}</h2>
     <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
     <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}</p>
     <p>${movie.overview || "No description available."}</p>
@@ -60,16 +62,18 @@ function renderTopPopular(movies) {
   let html = "";
 
   topMovies.forEach(function (movie, index) {
+    if (!movie || !movie.id) return;
+
     html += `
       <div class="top-item" data-id="${movie.id}">
         <div class="top-rank">${index + 1}</div>
         <div class="top-info">
-          <h4>${movie.title}</h4>
+          <h4>${movie.title || "Untitled Movie"}</h4>
           <p>⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}</p>
         </div>
       </div>
     `;
   });
 
-  $("#topPopularList").html(html);
+  $("#topPopularList").html(html || "<p>No top movies available.</p>");
 }
