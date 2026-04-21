@@ -38,27 +38,44 @@ $(document).ready(function () {
 
   $(document).on("click", ".movie-card", function () {
     const movieId = $(this).data("id");
-
+  
     getMovieDetails(movieId).done(function (movie) {
       renderMovieDetails(movie);
       showView("detailsView");
+  
+      isFavorite(movieId).then(function (fav) {
+        const btn = $("#favoriteToggleBtn");
+  
+        if (fav) {
+          btn.text("Remove from Favorites");
+          btn.data("fav", true);
+        } else {
+          btn.text("Add to Favorites");
+          btn.data("fav", false);
+        }
+      });
     }).fail(function () {
       console.log("Details failed");
-      alert("Failed to load movie details");
     });
   });
 
-  $(document).on("click", "#addFavoriteBtn", function () {
+  $(document).on("click", "#favoriteToggleBtn", function () {
     const movieId = $(this).data("id");
-
-    console.log("Favorite button clicked, movie id:", movieId);
-
-    addFavorite(movieId, true).done(function () {
-      console.log("Added to Favorites");
-      alert("Added to Favorites");
-    }).fail(function (xhr) {
-      console.log("Failed to add favorite", xhr.responseText);
-      alert("Failed to add favorite");
+    const isFav = $(this).data("fav");
+    const btn = $(this);
+  
+    addFavorite(movieId, !isFav).done(function () {
+      if (isFav) {
+        alert("Removed from Favorites");
+        btn.text("Add to Favorites");
+        btn.data("fav", false);
+      } else {
+        alert("Added to Favorites");
+        btn.text("Remove from Favorites");
+        btn.data("fav", true);
+      }
+    }).fail(function () {
+      alert("Failed to update favorite");
     });
   });
 
