@@ -42,7 +42,11 @@ $(document).ready(function () {
     $("#searchView .movie-grid").html("<p>Loading search results...</p>");
 
     searchMovies(query).done(function (data) {
-      renderMovies(data.results, "#searchView .movie-grid");
+      const validResults = data.results.filter(function (movie) {
+        return movie && movie.id && movie.title;
+      });
+
+      renderMovies(validResults, "#searchView .movie-grid");
       showView("searchView");
     }).fail(function () {
       console.log("Search failed");
@@ -115,7 +119,17 @@ $(document).ready(function () {
 });
 
 function openMovieDetails(movieId) {
+  if (!movieId) {
+    showMessage("Movie details are unavailable for this item.", "error");
+    return;
+  }
+
   getMovieDetails(movieId).done(function (movie) {
+    if (!movie || !movie.id) {
+      showMessage("Movie details are unavailable for this item.", "error");
+      return;
+    }
+
     renderMovieDetails(movie);
     $("#movieModal").fadeIn();
 
@@ -129,10 +143,15 @@ function openMovieDetails(movieId) {
         btn.text("Add to Favorites");
         btn.data("fav", false);
       }
+    }).fail(function () {
+      const btn = $("#favoriteToggleBtn");
+      btn.text("Add to Favorites");
+      btn.data("fav", false);
     });
-  }).fail(function () {
-    console.log("Details failed");
-    showMessage("Failed to load movie details ⚠", "error");
+
+  }).fail(function (xhr) {
+    console.log("Details failed for movieId:", movieId, xhr.responseText);
+    showMessage("Movie details could not be loaded.", "error");
   });
 }
 
