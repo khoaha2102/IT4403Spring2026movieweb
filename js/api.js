@@ -51,7 +51,7 @@ function getFavoriteMovies() {
 // Add to favorites
 function addFavorite(movieId, favorite = true) {
   return $.ajax({
-    url: `${BASE_URL}/account/${ACCOUNT_ID}/favorite?api_key=${API_KEY}&session_id=${SESSION_ID}`,
+    url: `${BASE_URL}/account/${ACCOUNT_ID}/favorite?api_key=${API_KEY}&session_id=${SESSION_ID}`,  // FIXED LINE
     method: "POST",
     contentType: "application/json;charset=utf-8",
     dataType: "json",
@@ -60,5 +60,23 @@ function addFavorite(movieId, favorite = true) {
       media_id: movieId,
       favorite: favorite
     })
+  });
+}
+// Get account details (optional)
+function getAccountDetails() {
+  return $.ajax({
+    url: `${BASE_URL}/account`,
+    method: "GET",
+    data: {
+      api_key: API_KEY,
+      session_id: SESSION_ID
+    }
+  });
+}
+
+// Check if movie is already favorite
+function isFavorite(movieId) {
+  return getFavoriteMovies().then(function (data) {
+    return data.results.some(movie => movie.id === movieId);
   });
 }
