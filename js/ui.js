@@ -49,3 +49,22 @@ function renderGenres(genres) {
 
   $("#genreSelect").html(options);
 }
+
+function renderTopPopular(movies) {
+  const topMovies = movies.slice(0, 5);
+  let html = "";
+
+  topMovies.forEach(function (movie, index) {
+    html += `
+      <div class="top-item">
+        <div class="top-rank">${index + 1}</div>
+        <div class="top-info">
+          <h4>${movie.title}</h4>
+          <p>⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}</p>
+        </div>
+      </div>
+    `;
+  });
+
+  $("#topPopularList").html(html);
+}
