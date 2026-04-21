@@ -21,3 +21,12 @@ function searchMovies(query) {
     }
   });
 }
+function getMovieDetails(id) {
+  return $.ajax({
+    url: `${BASE_URL}/movie/${id}`,
+    method: "GET",
+    data: {
+      api_key: API_KEY
+    }
+  });
+}
