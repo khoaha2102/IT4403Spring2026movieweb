@@ -52,6 +52,23 @@ section {
   padding: 20px;
 }
 
+/* FILTER BAR */
+.filter-bar {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.filter-bar label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.filter-bar select {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
 /* MOVIE GRID */
 .movie-grid {
   display: grid;
@@ -117,6 +134,16 @@ section {
 #favoritesView,
 #detailsView {
   display: none;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #cbd5e1;
+  font-size: 14px;
+  border-top: 1px solid #1e293b;
+  margin-top: 30px;
 }
 
 /* RESPONSIVE */
