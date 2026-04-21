@@ -58,6 +58,7 @@ $(document).ready(function () {
     if (!genreId) {
       getPopularMovies().done(function (data) {
         renderMovies(data.results, "#homeView .movie-grid");
+        renderTopPopular(data.results);
       }).fail(function () {
         showMessage("Failed to load popular movies ⚠", "error");
       });
@@ -122,6 +123,7 @@ $(document).ready(function () {
 
   getPopularMovies().done(function (data) {
     renderMovies(data.results, "#homeView .movie-grid");
+    renderTopPopular(data.results);
   }).fail(function () {
     console.log("API failed");
     showMessage("Failed to load popular movies ⚠", "error");
