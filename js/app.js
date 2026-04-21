@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+  showView("homeView");
+
   $("#homeBtn").click(function () {
     showView("homeView");
   });
@@ -20,13 +22,17 @@ $(document).ready(function () {
   $("#searchSubmit").click(function () {
     const query = $("#searchInput").val().trim();
 
-    if (!query) return;
+    if (!query) {
+      alert("Please enter a movie title.");
+      return;
+    }
 
     searchMovies(query).done(function (data) {
       renderMovies(data.results, "#searchView .movie-grid");
       showView("searchView");
     }).fail(function () {
       console.log("Search failed");
+      alert("Search failed");
     });
   });
 
@@ -38,6 +44,7 @@ $(document).ready(function () {
       showView("detailsView");
     }).fail(function () {
       console.log("Details failed");
+      alert("Failed to load movie details");
     });
   });
 
@@ -59,6 +66,7 @@ $(document).ready(function () {
     renderMovies(data.results);
   }).fail(function () {
     console.log("API failed");
+    alert("Failed to load popular movies");
   });
 
 });
@@ -73,5 +81,6 @@ function loadFavorites() {
     renderMovies(data.results, "#favoritesView .movie-grid");
   }).fail(function () {
     console.log("Failed to load favorites");
+    alert("Failed to load favorites");
   });
 }
