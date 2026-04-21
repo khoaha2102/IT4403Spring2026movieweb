@@ -1,3 +1,26 @@
+function performSearch() {
+  const query = $("#searchInput").val().trim();
+
+  if (!query) {
+    showMessage("Please enter a movie title.", "error");
+    return;
+  }
+
+  $("#searchView .movie-grid").html("<p>Loading search results...</p>");
+
+  searchMovies(query).done(function (data) {
+    const validResults = data.results.filter(function (movie) {
+      return movie && movie.id && movie.title;
+    });
+
+    renderMovies(validResults, "#searchView .movie-grid");
+    showView("searchView");
+  }).fail(function (xhr) {
+    console.log("Search failed");
+    handleApiError(xhr);
+  });
+}
+
 $(document).ready(function () {
   showView("homeView");
 
@@ -31,28 +54,14 @@ $(document).ready(function () {
     }
   });
 
-  $("#searchSubmit").off("click").on("click", debounce(function () {
-    const query = $("#searchInput").val().trim();
+  $("#searchSubmit").off("click").on("click", debounce(performSearch, 500));
 
-    if (!query) {
-      showMessage("Please enter a movie title.", "error");
-      return;
+  $("#searchInput").on("keypress", function (e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      performSearch();
     }
-
-    $("#searchView .movie-grid").html("<p>Loading search results...</p>");
-
-    searchMovies(query).done(function (data) {
-      const validResults = data.results.filter(function (movie) {
-        return movie && movie.id && movie.title;
-      });
-
-      renderMovies(validResults, "#searchView .movie-grid");
-      showView("searchView");
-    }).fail(function (xhr) {
-      console.log("Search failed");
-      handleApiError(xhr);
-    });
-  }, 500));
+  });
 
   $("#genreSelect").change(function () {
     const genreId = $(this).val();
