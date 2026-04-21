@@ -1,6 +1,7 @@
 const API_KEY = "8d6d0afa1e5173177b90d97661c359fe";
 const BASE_URL = "https://api.themoviedb.org/3";
 
+// Get popular movies
 function getPopularMovies() {
   return $.ajax({
     url: `${BASE_URL}/movie/popular`,
@@ -11,6 +12,7 @@ function getPopularMovies() {
   });
 }
 
+// Search movies
 function searchMovies(query) {
   return $.ajax({
     url: `${BASE_URL}/search/movie`,
@@ -21,6 +23,8 @@ function searchMovies(query) {
     }
   });
 }
+
+// Get movie details
 function getMovieDetails(id) {
   return $.ajax({
     url: `${BASE_URL}/movie/${id}`,
