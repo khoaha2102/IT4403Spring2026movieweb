@@ -37,7 +37,7 @@ function renderMovieDetails(movie) {
     <button id="favoriteToggleBtn" data-id="${movie.id}">Loading...</button>
   `;
 
-  $("#detailsView .movie-details").html(html);
+  $("#movieModal .movie-details").html(html);
 }
 
 function renderGenres(genres) {
