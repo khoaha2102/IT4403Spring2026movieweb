@@ -133,6 +133,24 @@ function loadFavorites() {
     renderMovies(data.results, "#favoritesView .movie-grid");
   }).fail(function () {
     console.log("Failed to load favorites");
-    alert("Failed to load favorites");
+    showMessage("Failed to load favorites ⚠");
   });
+}
+
+function showMessage(text, type = "info") {
+  const box = $("#statusMessage");
+
+  box.removeClass("success error");
+
+  if (type === "success") {
+    box.addClass("success");
+  } else if (type === "error") {
+    box.addClass("error");
+  }
+
+  box.text(text).fadeIn();
+
+  setTimeout(() => {
+    box.fadeOut();
+  }, 2000);
 }
