@@ -74,6 +74,8 @@ $(document).ready(function () {
         btn.text("Remove from Favorites");
         btn.data("fav", true);
       }
+    
+      loadFavorites();
     }).fail(function () {
       alert("Failed to update favorite");
     });
