@@ -28,7 +28,7 @@ $(document).ready(function () {
     const query = $("#searchInput").val().trim();
 
     if (!query) {
-      alert("Please enter a movie title.");
+      showMessage("Please enter a movie title.", "error");
       return;
     }
 
@@ -39,7 +39,7 @@ $(document).ready(function () {
       showView("searchView");
     }).fail(function () {
       console.log("Search failed");
-      alert("Search failed");
+      showMessage("Search failed ⚠", "error");
     });
   });
 
@@ -52,7 +52,7 @@ $(document).ready(function () {
       getPopularMovies().done(function (data) {
         renderMovies(data.results, "#homeView .movie-grid");
       }).fail(function () {
-        alert("Failed to load popular movies");
+        showMessage("Failed to load popular movies ⚠", "error");
       });
       return;
     }
@@ -61,7 +61,7 @@ $(document).ready(function () {
       renderMovies(data.results, "#homeView .movie-grid");
       showView("homeView");
     }).fail(function () {
-      alert("Failed to load movies by genre");
+      showMessage("Failed to load movies by genre ⚠", "error");
     });
   });
 
@@ -85,7 +85,7 @@ $(document).ready(function () {
       });
     }).fail(function () {
       console.log("Details failed");
-      alert("Failed to load movie details");
+      showMessage("Failed to load movie details ⚠", "error");
     });
   });
 
@@ -96,18 +96,18 @@ $(document).ready(function () {
 
     addFavorite(movieId, !isFav).done(function () {
       if (isFav) {
-        alert("Removed from Favorites");
+        showMessage("Removed from Favorites ❌", "success");
         btn.text("Add to Favorites");
         btn.data("fav", false);
       } else {
-        alert("Added to Favorites");
+        showMessage("Added to Favorites ✔", "success");
         btn.text("Remove from Favorites");
         btn.data("fav", true);
       }
 
       loadFavorites();
     }).fail(function () {
-      alert("Failed to update favorite");
+      showMessage("Failed to update favorite ⚠", "error");
     });
   });
 
@@ -117,7 +117,7 @@ $(document).ready(function () {
     renderMovies(data.results, "#homeView .movie-grid");
   }).fail(function () {
     console.log("API failed");
-    alert("Failed to load popular movies");
+    showMessage("Failed to load popular movies ⚠", "error");
   });
 });
 
