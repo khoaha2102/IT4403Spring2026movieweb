@@ -25,11 +25,11 @@ header h1 {
   margin: 0;
 }
 
-/* NAV BUTTONS */
+/* NAV + BUTTONS */
 nav button,
 #searchSubmit,
 #backBtn,
-#addFavoriteBtn {
+#favoriteToggleBtn {
   background-color: #38bdf8;
   border: none;
   padding: 8px 14px;
@@ -43,7 +43,7 @@ nav button,
 nav button:hover,
 #searchSubmit:hover,
 #backBtn:hover,
-#addFavoriteBtn:hover {
+#favoriteToggleBtn:hover {
   background-color: #0ea5e9;
 }
 
@@ -112,6 +112,7 @@ section {
   margin-bottom: 15px;
 }
 
+/* HIDE SPA VIEWS */
 #searchView,
 #favoritesView,
 #detailsView {
