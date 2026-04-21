@@ -1,6 +1,11 @@
 function renderMovies(movies, container = "#homeView .movie-grid") {
   if (!movies || movies.length === 0) {
-    $(container).html("<p>No results found.</p>");
+    const message =
+      container === "#favoritesView .movie-grid"
+        ? "No favorites yet."
+        : "No movies found. Try another search.";
+
+    $(container).html(`<p>${message}</p>`);
     return;
   }
 
