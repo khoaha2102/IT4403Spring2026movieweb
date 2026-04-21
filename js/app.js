@@ -74,27 +74,11 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".movie-card", function () {
-    const movieId = $(this).data("id");
+    openMovieDetails($(this).data("id"));
+  });
 
-    getMovieDetails(movieId).done(function (movie) {
-      renderMovieDetails(movie);
-      $("#movieModal").fadeIn();
-
-      isFavorite(movieId).then(function (fav) {
-        const btn = $("#favoriteToggleBtn");
-
-        if (fav) {
-          btn.text("Remove from Favorites");
-          btn.data("fav", true);
-        } else {
-          btn.text("Add to Favorites");
-          btn.data("fav", false);
-        }
-      });
-    }).fail(function () {
-      console.log("Details failed");
-      showMessage("Failed to load movie details ⚠", "error");
-    });
+  $(document).on("click", ".top-item", function () {
+    openMovieDetails($(this).data("id"));
   });
 
   $(document).on("click", "#favoriteToggleBtn", function () {
@@ -129,6 +113,28 @@ $(document).ready(function () {
     showMessage("Failed to load popular movies ⚠", "error");
   });
 });
+
+function openMovieDetails(movieId) {
+  getMovieDetails(movieId).done(function (movie) {
+    renderMovieDetails(movie);
+    $("#movieModal").fadeIn();
+
+    isFavorite(movieId).then(function (fav) {
+      const btn = $("#favoriteToggleBtn");
+
+      if (fav) {
+        btn.text("Remove from Favorites");
+        btn.data("fav", true);
+      } else {
+        btn.text("Add to Favorites");
+        btn.data("fav", false);
+      }
+    });
+  }).fail(function () {
+    console.log("Details failed");
+    showMessage("Failed to load movie details ⚠", "error");
+  });
+}
 
 function showView(viewId) {
   $("#homeView, #searchView, #favoritesView").hide();
