@@ -7,7 +7,9 @@ body {
 }
 
 main {
-  padding: 20px;
+  padding: 20px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* HEADER */
@@ -25,10 +27,9 @@ header h1 {
   margin: 0;
 }
 
-/* NAV + BUTTONS */
+/* BUTTONS */
 nav button,
 #searchSubmit,
-#backBtn,
 #favoriteToggleBtn {
   background-color: #38bdf8;
   border: none;
@@ -42,22 +43,25 @@ nav button,
 
 nav button:hover,
 #searchSubmit:hover,
-#backBtn:hover,
 #favoriteToggleBtn:hover {
   background-color: #0ea5e9;
 }
 
 /* SECTIONS */
 section {
-  padding: 20px;
+  padding: 20px 0;
   transition: opacity 0.3s ease;
 }
 
-/* FILTER BAR (FIXED ALIGNMENT) */
+section h2 {
+  margin: 0 0 20px;
+}
+
+/* FILTER BAR */
 .filter-bar {
-  margin-bottom: 20px;
+  margin: 10px 0 25px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
 }
@@ -72,16 +76,14 @@ section {
   border: none;
 }
 
-/* MOVIE GRID (CENTERED + CLEAN) */
+/* MOVIE GRID */
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  width: 100%;
 }
 
-/* LOADING TEXT STYLE */
 .movie-grid p {
   text-align: center;
   font-size: 18px;
@@ -97,6 +99,7 @@ section {
   text-align: center;
   padding-bottom: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
 }
 
 .movie-card:hover {
@@ -109,6 +112,7 @@ section {
 
 .movie-card img {
   width: 100%;
+  display: block;
 }
 
 .movie-card h3 {
@@ -133,7 +137,50 @@ section {
   border: none;
 }
 
-/* DETAILS VIEW */
+/* HIDE SPA VIEWS */
+#searchView,
+#favoritesView {
+  display: none;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background-color: #020617;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #38bdf8;
+}
+
+.close-btn:hover {
+  color: #0ea5e9;
+}
+
+/* DETAILS */
 .movie-details {
   max-width: 600px;
   margin: auto;
@@ -146,14 +193,7 @@ section {
   margin-bottom: 15px;
 }
 
-/* HIDE SPA VIEWS */
-#searchView,
-#favoritesView,
-#detailsView {
-  display: none;
-}
-
-/* FOOTER (FIXED SPACING) */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 20px;
@@ -164,7 +204,7 @@ footer {
   opacity: 0.7;
 }
 
-/* STATUS MESSAGE (TOAST UI) */
+/* STATUS MESSAGE */
 #statusMessage {
   position: fixed;
   bottom: 20px;
@@ -199,5 +239,10 @@ footer {
   .search-bar input {
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
