@@ -61,7 +61,7 @@ function renderTopPopular(movies) {
 
   topMovies.forEach(function (movie, index) {
     html += `
-      <div class="top-item">
+      <div class="top-item" data-id="${movie.id}">
         <div class="top-rank">${index + 1}</div>
         <div class="top-info">
           <h4>${movie.title}</h4>
