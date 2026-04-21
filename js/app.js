@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+  // BUTTONS
   $("#homeBtn").click(function () {
     showView("homeView");
   });
@@ -14,6 +16,14 @@ $(document).ready(function () {
   $("#backBtn").click(function () {
     showView("homeView");
   });
+
+  // 🔥 TEST API HERE
+  getPopularMovies().done(function (data) {
+    console.log("Movies:", data.results);
+  }).fail(function () {
+    console.log("API failed");
+  });
+
 });
 
 function showView(viewId) {
