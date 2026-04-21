@@ -21,8 +21,14 @@ $(document).ready(function () {
     showView("favoritesView");
   });
 
-  $("#backBtn").click(function () {
-    showView("homeView");
+  $("#closeModalBtn").click(function () {
+    $("#movieModal").fadeOut();
+  });
+
+  $(window).click(function (event) {
+    if ($(event.target).is("#movieModal")) {
+      $("#movieModal").fadeOut();
+    }
   });
 
   $("#searchSubmit").click(function () {
@@ -71,7 +77,7 @@ $(document).ready(function () {
 
     getMovieDetails(movieId).done(function (movie) {
       renderMovieDetails(movie);
-      showView("detailsView");
+      $("#movieModal").fadeIn();
 
       isFavorite(movieId).then(function (fav) {
         const btn = $("#favoriteToggleBtn");
@@ -123,7 +129,7 @@ $(document).ready(function () {
 });
 
 function showView(viewId) {
-  $("#homeView, #searchView, #favoritesView, #detailsView").hide();
+  $("#homeView, #searchView, #favoritesView").hide();
   $("#" + viewId).show();
 }
 
