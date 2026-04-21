@@ -6,6 +6,10 @@ body {
   color: white;
 }
 
+main {
+  padding: 20px;
+}
+
 /* HEADER */
 header {
   display: flex;
@@ -18,10 +22,14 @@ header {
 
 header h1 {
   color: #38bdf8;
+  margin: 0;
 }
 
 /* NAV BUTTONS */
-nav button {
+nav button,
+#searchSubmit,
+#backBtn,
+#addFavoriteBtn {
   background-color: #38bdf8;
   border: none;
   padding: 8px 14px;
@@ -29,9 +37,13 @@ nav button {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  color: black;
 }
 
-nav button:hover {
+nav button:hover,
+#searchSubmit:hover,
+#backBtn:hover,
+#addFavoriteBtn:hover {
   background-color: #0ea5e9;
 }
 
@@ -53,6 +65,8 @@ section {
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.2s ease;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
 .movie-card:hover {
@@ -78,8 +92,11 @@ section {
   margin-bottom: 20px;
 }
 
-.search-bar button {
-  margin-left: 10px;
+.search-bar input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 6px;
+  border: none;
 }
 
 /* DETAILS VIEW */
@@ -92,12 +109,15 @@ section {
 .movie-details img {
   width: 200px;
   border-radius: 10px;
+  margin-bottom: 15px;
 }
+
 #searchView,
 #favoritesView,
 #detailsView {
   display: none;
 }
+
 /* RESPONSIVE */
 @media (max-width: 600px) {
   header {
@@ -108,5 +128,4 @@ section {
     width: 100%;
     margin-bottom: 10px;
   }
-
 }
