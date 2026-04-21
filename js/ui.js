@@ -39,3 +39,13 @@ function renderMovieDetails(movie) {
 
   $("#detailsView .movie-details").html(html);
 }
+
+function renderGenres(genres) {
+  let options = `<option value="">All Genres</option>`;
+
+  genres.forEach(function (genre) {
+    options += `<option value="${genre.id}">${genre.name}</option>`;
+  });
+
+  $("#genreSelect").html(options);
+}
