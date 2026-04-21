@@ -62,17 +62,6 @@ function addFavorite(movieId, favorite = true) {
     })
   });
 }
-// Get account details (optional)
-function getAccountDetails() {
-  return $.ajax({
-    url: `${BASE_URL}/account`,
-    method: "GET",
-    data: {
-      api_key: API_KEY,
-      session_id: SESSION_ID
-    }
-  });
-}
 
 // Check if movie is already favorite
 function isFavorite(movieId) {
