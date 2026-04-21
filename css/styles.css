@@ -93,7 +93,11 @@ section {
   width: 200px;
   border-radius: 10px;
 }
-
+#searchView,
+#favoritesView,
+#detailsView {
+  display: none;
+}
 /* RESPONSIVE */
 @media (max-width: 600px) {
   header {
@@ -104,4 +108,5 @@ section {
     width: 100%;
     margin-bottom: 10px;
   }
+
 }
