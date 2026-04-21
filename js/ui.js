@@ -32,7 +32,7 @@ function renderMovieDetails(movie) {
     <img src="${poster}" alt="${movie.title} poster">
     <h2>${movie.title}</h2>
     <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
-    <p><strong>Rating:</strong> ${movie.vote_average || "N/A"}</p>
+    <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}</p>
     <p>${movie.overview || "No description available."}</p>
     <button id="favoriteToggleBtn" data-id="${movie.id}">Loading...</button>
   `;
