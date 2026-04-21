@@ -3,9 +3,9 @@ $(document).ready(function () {
 
   getGenres().done(function (data) {
     renderGenres(data.genres);
-  }).fail(function () {
+  }).fail(function (xhr) {
     console.log("Failed to load genres");
-    showMessage("Failed to load genres ⚠", "error");
+    handleApiError(xhr);
   });
 
   $("#homeBtn").click(function () {
@@ -31,7 +31,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#searchSubmit").click(function () {
+  $("#searchSubmit").off("click").on("click", debounce(function () {
     const query = $("#searchInput").val().trim();
 
     if (!query) {
@@ -48,11 +48,11 @@ $(document).ready(function () {
 
       renderMovies(validResults, "#searchView .movie-grid");
       showView("searchView");
-    }).fail(function () {
+    }).fail(function (xhr) {
       console.log("Search failed");
-      showMessage("Search failed ⚠", "error");
+      handleApiError(xhr);
     });
-  });
+  }, 500));
 
   $("#genreSelect").change(function () {
     const genreId = $(this).val();
@@ -63,8 +63,8 @@ $(document).ready(function () {
       getPopularMovies().done(function (data) {
         renderMovies(data.results, "#homeView .movie-grid");
         renderTopPopular(data.results);
-      }).fail(function () {
-        showMessage("Failed to load popular movies ⚠", "error");
+      }).fail(function (xhr) {
+        handleApiError(xhr);
       });
       return;
     }
@@ -72,8 +72,8 @@ $(document).ready(function () {
     getMoviesByGenre(genreId).done(function (data) {
       renderMovies(data.results, "#homeView .movie-grid");
       showView("homeView");
-    }).fail(function () {
-      showMessage("Failed to load movies by genre ⚠", "error");
+    }).fail(function (xhr) {
+      handleApiError(xhr);
     });
   });
 
@@ -102,8 +102,8 @@ $(document).ready(function () {
       }
 
       loadFavorites();
-    }).fail(function () {
-      showMessage("Failed to update favorite ⚠", "error");
+    }).fail(function (xhr) {
+      handleApiError(xhr);
     });
   });
 
@@ -112,9 +112,9 @@ $(document).ready(function () {
   getPopularMovies().done(function (data) {
     renderMovies(data.results, "#homeView .movie-grid");
     renderTopPopular(data.results);
-  }).fail(function () {
+  }).fail(function (xhr) {
     console.log("API failed");
-    showMessage("Failed to load popular movies ⚠", "error");
+    handleApiError(xhr);
   });
 });
 
@@ -151,7 +151,7 @@ function openMovieDetails(movieId) {
 
   }).fail(function (xhr) {
     console.log("Details failed for movieId:", movieId, xhr.responseText);
-    showMessage("Movie details could not be loaded.", "error");
+    handleApiError(xhr);
   });
 }
 
@@ -165,9 +165,9 @@ function loadFavorites() {
 
   getFavoriteMovies().done(function (data) {
     renderMovies(data.results, "#favoritesView .movie-grid");
-  }).fail(function () {
+  }).fail(function (xhr) {
     console.log("Failed to load favorites");
-    showMessage("Failed to load favorites ⚠", "error");
+    handleApiError(xhr);
   });
 }
 
@@ -187,4 +187,25 @@ function showMessage(text, type = "info") {
   setTimeout(() => {
     box.fadeOut();
   }, 2000);
+}
+
+function debounce(fn, delay = 500) {
+  let timer;
+
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+function handleApiError(xhr) {
+  if (xhr && xhr.status === 429) {
+    showMessage("Too many requests. Please wait a moment and try again.", "error");
+  } else if (xhr && xhr.status === 401) {
+    showMessage("Authentication failed. Check your API/session settings.", "error");
+  } else if (xhr && xhr.status === 404) {
+    showMessage("Requested item could not be found.", "error");
+  } else {
+    showMessage("Something went wrong. Please try again.", "error");
+  }
 }
