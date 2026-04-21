@@ -157,3 +157,16 @@ footer {
     margin-bottom: 10px;
   }
 }
+#statusMessage {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #38bdf8;
+  color: black;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 9999;
+}
