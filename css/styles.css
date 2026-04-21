@@ -93,6 +93,7 @@ section h2 {
   gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid #1e293b;
+  cursor: pointer;
 }
 
 .top-item:hover {
