@@ -25,6 +25,18 @@ function searchMovies(query) {
   });
 }
 
+// Get movie details
+function getMovieDetails(id) {
+  return $.ajax({
+    url: `${BASE_URL}/movie/${id}`,
+    method: "GET",
+    data: {
+      api_key: API_KEY
+    }
+  });
+}
+
+// Get favorite movies
 function getFavoriteMovies() {
   return $.ajax({
     url: `${BASE_URL}/account/${ACCOUNT_ID}/favorite/movies`,
@@ -36,24 +48,7 @@ function getFavoriteMovies() {
   });
 }
 
-function addFavorite(movieId, favorite = true) {
-  return $.ajax({
-    url: `${BASE_URL}/account/${ACCOUNT_ID}/favorite`,
-    method: "POST",
-    data: {
-      api_key: API_KEY,
-      session_id: SESSION_ID
-    },
-    contentType: "application/json;charset=utf-8",
-    dataType: "json",
-    data: JSON.stringify({
-      media_type: "movie",
-      media_id: movieId,
-      favorite: favorite
-    })
-  });
-}
-
+// Add to favorites
 function addFavorite(movieId, favorite = true) {
   return $.ajax({
     url: `${BASE_URL}/account/${ACCOUNT_ID}/favorite?api_key=${API_KEY}&session_id=${SESSION_ID}`,
