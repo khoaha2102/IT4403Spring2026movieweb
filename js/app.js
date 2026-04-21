@@ -5,6 +5,7 @@ $(document).ready(function () {
     renderGenres(data.genres);
   }).fail(function () {
     console.log("Failed to load genres");
+    showMessage("Failed to load genres ⚠", "error");
   });
 
   $("#homeBtn").click(function () {
@@ -133,7 +134,7 @@ function loadFavorites() {
     renderMovies(data.results, "#favoritesView .movie-grid");
   }).fail(function () {
     console.log("Failed to load favorites");
-    showMessage("Failed to load favorites ⚠");
+    showMessage("Failed to load favorites ⚠", "error");
   });
 }
 
