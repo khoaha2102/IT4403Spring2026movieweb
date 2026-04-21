@@ -44,23 +44,21 @@
     <h2>Your Favorites</h2>
     <div class="movie-grid"></div>
   </section>
-
-  <section id="detailsView">
-    <button id="backBtn">Back</button>
-    <div class="movie-details">
-      <img src="https://placehold.co/300x450?text=Movie+Poster" alt="Movie Poster">
-      <h2>Movie Title</h2>
-      <p>Release Date: 2024</p>
-      <p>Rating: 8.5</p>
-      <p>Description goes here...</p>
-    </div>
-  </section>
 </main>
+
+<div id="movieModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModalBtn" class="close-btn">&times;</span>
+    <div class="movie-details"></div>
+  </div>
+</div>
 
 <footer>
   <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
 </footer>
+
 <div id="statusMessage"></div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/api.js"></script>
 <script src="js/ui.js"></script>
