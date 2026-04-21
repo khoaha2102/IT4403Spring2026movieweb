@@ -170,3 +170,12 @@ footer {
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   z-index: 9999;
 }
+#statusMessage.success {
+  background-color: #22c55e;
+  color: white;
+}
+
+#statusMessage.error {
+  background-color: #ef4444;
+  color: white;
+}
