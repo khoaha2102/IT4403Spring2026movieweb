@@ -1,4 +1,9 @@
 function renderMovies(movies, container = "#homeView .movie-grid") {
+  if (!movies || movies.length === 0) {
+    $(container).html("<p>No results found.</p>");
+    return;
+  }
+
   let html = "";
 
   movies.forEach(function (movie) {
@@ -8,9 +13,9 @@ function renderMovies(movies, container = "#homeView .movie-grid") {
 
     html += `
       <div class="movie-card" data-id="${movie.id}">
-        <img src="${poster}" alt="${movie.title}">
+        <img src="${poster}" alt="${movie.title} poster">
         <h3>${movie.title}</h3>
-        <p>⭐ ${movie.vote_average}</p>
+        <p>⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}</p>
       </div>
     `;
   });
@@ -24,10 +29,10 @@ function renderMovieDetails(movie) {
     : "https://placehold.co/300x450?text=No+Image";
 
   const html = `
-    <img src="${poster}" alt="${movie.title}">
+    <img src="${poster}" alt="${movie.title} poster">
     <h2>${movie.title}</h2>
-    <p>Release Date: ${movie.release_date || "N/A"}</p>
-    <p>Rating: ${movie.vote_average || "N/A"}</p>
+    <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
+    <p><strong>Rating:</strong> ${movie.vote_average || "N/A"}</p>
     <p>${movie.overview || "No description available."}</p>
     <button id="addFavoriteBtn" data-id="${movie.id}">Add to Favorites</button>
   `;
