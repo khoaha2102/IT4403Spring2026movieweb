@@ -1,4 +1,3 @@
-// Render movie cards
 function renderMovies(movies, container = "#homeView .movie-grid") {
   let html = "";
 
@@ -19,7 +18,6 @@ function renderMovies(movies, container = "#homeView .movie-grid") {
   $(container).html(html);
 }
 
-// Render movie details page
 function renderMovieDetails(movie) {
   const poster = movie.poster_path
     ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
@@ -31,6 +29,7 @@ function renderMovieDetails(movie) {
     <p>Release Date: ${movie.release_date || "N/A"}</p>
     <p>Rating: ${movie.vote_average || "N/A"}</p>
     <p>${movie.overview || "No description available."}</p>
+    <button id="addFavoriteBtn" data-id="${movie.id}">Add to Favorites</button>
   `;
 
   $("#detailsView .movie-details").html(html);
