@@ -17,9 +17,9 @@ $(document).ready(function () {
     showView("homeView");
   });
 
-  // 🔥 TEST API HERE
   getPopularMovies().done(function (data) {
     console.log("Movies:", data.results);
+    renderMovies(data.results);
   }).fail(function () {
     console.log("API failed");
   });
