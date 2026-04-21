@@ -67,6 +67,7 @@ section h2 {
 
 .main-content {
   width: 100%;
+  min-width: 0;
 }
 
 /* SIDEBAR */
@@ -75,6 +76,7 @@ section h2 {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  width: 100%;
 }
 
 .sidebar h2 {
@@ -139,8 +141,8 @@ section h2 {
 /* MOVIE GRID */
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
   width: 100%;
 }
 
