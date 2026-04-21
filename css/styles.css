@@ -95,6 +95,13 @@ section h2 {
   border-bottom: 1px solid #1e293b;
 }
 
+.top-item:hover {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding-left: 5px;
+  transition: 0.2s;
+}
+
 .top-rank {
   background-color: #f59e0b;
   color: black;
@@ -150,6 +157,8 @@ section h2 {
   text-align: center;
   font-size: 18px;
   opacity: 0.7;
+  width: 100%;
+  grid-column: 1 / -1;
 }
 
 /* MOVIE CARD */
@@ -197,6 +206,14 @@ section h2 {
   width: 250px;
   border-radius: 6px;
   border: none;
+}
+
+#searchView {
+  text-align: center;
+}
+
+#searchView .movie-grid {
+  margin-top: 20px;
 }
 
 /* HIDE SPA VIEWS */
