@@ -44,9 +44,13 @@ $(document).ready(function () {
   $(document).on("click", "#addFavoriteBtn", function () {
     const movieId = $(this).data("id");
 
+    console.log("Favorite button clicked, movie id:", movieId);
+
     addFavorite(movieId, true).done(function () {
+      console.log("Added to Favorites");
       alert("Added to Favorites");
-    }).fail(function () {
+    }).fail(function (xhr) {
+      console.log("Failed to add favorite", xhr.responseText);
       alert("Failed to add favorite");
     });
   });
