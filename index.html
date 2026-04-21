@@ -18,9 +18,16 @@
 </header>
 
 <main>
-
   <section id="homeView">
     <h2>Popular Movies</h2>
+
+    <div class="filter-bar">
+      <label for="genreSelect">Filter by Genre:</label>
+      <select id="genreSelect">
+        <option value="">All Genres</option>
+      </select>
+    </div>
+
     <div class="movie-grid"></div>
   </section>
 
@@ -48,8 +55,11 @@
       <p>Description goes here...</p>
     </div>
   </section>
-
 </main>
+
+<footer>
+  <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/api.js"></script>
