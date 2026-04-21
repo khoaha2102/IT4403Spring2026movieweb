@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-  // NAV BUTTONS
   $("#homeBtn").click(function () {
     showView("homeView");
   });
@@ -10,6 +9,7 @@ $(document).ready(function () {
   });
 
   $("#favoritesBtn").click(function () {
+    loadFavorites();
     showView("favoritesView");
   });
 
@@ -17,7 +17,6 @@ $(document).ready(function () {
     showView("homeView");
   });
 
-  // SEARCH BUTTON
   $("#searchSubmit").click(function () {
     const query = $("#searchInput").val().trim();
 
@@ -31,7 +30,6 @@ $(document).ready(function () {
     });
   });
 
-  // CLICK MOVIE → DETAILS
   $(document).on("click", ".movie-card", function () {
     const movieId = $(this).data("id");
 
@@ -43,7 +41,16 @@ $(document).ready(function () {
     });
   });
 
-  // LOAD HOME MOVIES
+  $(document).on("click", "#addFavoriteBtn", function () {
+    const movieId = $(this).data("id");
+
+    addFavorite(movieId, true).done(function () {
+      alert("Added to Favorites");
+    }).fail(function () {
+      alert("Failed to add favorite");
+    });
+  });
+
   getPopularMovies().done(function (data) {
     renderMovies(data.results);
   }).fail(function () {
@@ -52,8 +59,15 @@ $(document).ready(function () {
 
 });
 
-// SHOW VIEW (SPA)
 function showView(viewId) {
   $("#homeView, #searchView, #favoritesView, #detailsView").hide();
   $("#" + viewId).show();
+}
+
+function loadFavorites() {
+  getFavoriteMovies().done(function (data) {
+    renderMovies(data.results, "#favoritesView .movie-grid");
+  }).fail(function () {
+    console.log("Failed to load favorites");
+  });
 }
