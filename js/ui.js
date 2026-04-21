@@ -34,7 +34,7 @@ function renderMovieDetails(movie) {
     <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
     <p><strong>Rating:</strong> ${movie.vote_average || "N/A"}</p>
     <p>${movie.overview || "No description available."}</p>
-    <button id="addFavoriteBtn" data-id="${movie.id}">Add to Favorites</button>
+    <button id="favoriteToggleBtn" data-id="${movie.id}">Loading...</button>
   `;
 
   $("#detailsView .movie-details").html(html);
