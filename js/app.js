@@ -45,12 +45,12 @@ $(document).ready(function () {
   });
 
   $("#closeModalBtn").click(function () {
-    $("#movieModal").fadeOut();
+    closeMovieModal();
   });
 
   $(window).click(function (event) {
     if ($(event.target).is("#movieModal")) {
-      $("#movieModal").fadeOut();
+      closeMovieModal();
     }
   });
 
@@ -141,7 +141,7 @@ function openMovieDetails(movieId) {
 
     getMovieVideos(movieId).done(function (videoData) {
       let trailer = videoData.results.find(function (v) {
-        return v.type === "Trailer" && v.site === "YouTube";
+        return (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube";
       });
 
       const trailerKey = trailer ? trailer.key : null;
@@ -173,6 +173,12 @@ function openMovieDetails(movieId) {
   }).fail(function (xhr) {
     console.log("Details failed for movieId:", movieId, xhr.responseText);
     handleApiError(xhr);
+  });
+}
+
+function closeMovieModal() {
+  $("#movieModal").fadeOut(function () {
+    $("#movieModal .movie-details").html("");
   });
 }
 
