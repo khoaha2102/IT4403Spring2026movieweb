@@ -1,4 +1,4 @@
-const API_KEY = "8d6d0afa1e5173177b90d97661c359fe";
+const API_KEY = "56948b7ff0f144ce2bdd317b18c7e982";
 const BASE_URL = "https://api.themoviedb.org/3";
 const SESSION_ID = "20e597d97d11913d5b0748f0e8dc9dd9b03a9b56";
 const ACCOUNT_ID = "23034059";
