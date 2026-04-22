@@ -1,6 +1,6 @@
 const API_KEY = "56948b7ff0f144ce2bdd317b18c7e982";
 const BASE_URL = "https://api.themoviedb.org/3";
-const SESSION_ID = "20e597d97d11913d5b0748f0e8dc9dd9b03a9b56";
+const SESSION_ID = "771c18fa94a98132ee509b4768ad52e9282c9a1a";
 const ACCOUNT_ID = "23034059";
 
 const cache = {};
