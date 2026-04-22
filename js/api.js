@@ -151,3 +151,21 @@ function getMoviesByGenre(genreId) {
     cache[key] = data;
   });
 }
+
+function getMovieVideos(id) {
+  const url = `${BASE_URL}/movie/${id}/videos`;
+  const params = { api_key: API_KEY };
+  const key = getCacheKey(url, params);
+
+  if (cache[key]) {
+    return $.Deferred().resolve(cache[key]).promise();
+  }
+
+  return $.ajax({
+    url,
+    method: "GET",
+    data: params
+  }).done(function (data) {
+    cache[key] = data;
+  });
+}
