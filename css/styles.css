@@ -273,6 +273,25 @@ section h2 {
   margin-bottom: 15px;
 }
 
+/* TRAILER */
+.trailer-container {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.trailer-container h3 {
+  margin-bottom: 10px;
+  color: #38bdf8;
+}
+
+.trailer-container iframe {
+  width: 100%;
+  max-width: 600px;
+  height: 340px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
 /* FOOTER */
 footer {
   text-align: center;
