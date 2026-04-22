@@ -3,7 +3,6 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const SESSION_ID = "20e597d97d11913d5b0748f0e8dc9dd9b03a9b56";
 const ACCOUNT_ID = "23034059";
 
-
 const cache = {};
 let favoritesCache = null;
 
